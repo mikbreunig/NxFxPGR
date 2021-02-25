@@ -183,23 +183,5 @@ figure <- ggarrange(DI, DS, flag,
                     ncol = 1, nrow = 3)
 
 
-#######################################################################3
-
-
-Early<-read_delim(file = "EarlyLodging.csv",delim=",",na=".")
-
-leveneTest(lodging_assess ~ app, Early, center=mean)
-
-anova(lodging_assess~ app + (1|block))
-
-
-Model<-lmer(lodging_assess ~ app + (1|block),
-                    data=Early,
-                    REML=TRUE)
-anova.results<-anova(Model)
-
-results<-emmeans(Model,list(pairwise~ app), adjust="tukey")
-
-
 
 
